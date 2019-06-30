@@ -1,10 +1,11 @@
-<h2>Home</h2>
-
 <% if (!currentUser) { %>
 <a href="/auth/signup">Sign Up</a>
 <a href="/auth/login">Login</a>
 <% } else { %>
-    <p>Hello, <%= currentUser.name %></p>
 <a href="/auth/logout">Logout</a>
 <a href="/profile">Profile</a>
+    <p>Hello, <%= currentUser.name %></p>
+<h1>JUST FRIENDS - Don't touch me</h1>
+<h2>Home</h2>
+
 <% } %>

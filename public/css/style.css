@@ -1,0 +1,13 @@
+.profilegrid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 100px 300px 200px 100px;
+}
+
+.topnav1 {
+    grid-column: 1 / 2;
+}
+
+.topnav {
+    grid-column: 2 / 3;
+}

@@ -1,6 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+var upload = multer({dest: './uploads'});
 // Module allows use of sessions
 const session = require('express-session');
 // Imports passport local strategy
