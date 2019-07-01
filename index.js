@@ -68,6 +68,16 @@ app.get('/', function(req, res) {
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
+
+app.get('/match', isLoggedIn, function(req, res) {
+  res.render('match');
+});
+
+app.get('/messages', isLoggedIn, function(req, res) {
+  res.render('messages');
+})
+
+
 //Standard import for routes. When we require it here, we mount it 
 app.use('/auth', require('./controllers/auth'));
 

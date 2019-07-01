@@ -1,13 +1,28 @@
-<div class = "profilegrid">
+<script>
+    function makeEditable(p) {
+      p.contentEditable = true;
+    }
 
-    <a class="topnav1" href="/">Match!</a>
+    function makeReadOnly(p) {
+      p.contentEditable = false;
+    }
+</script>
+
+<div class = "profilegrid">
+    <a href="/auth/logout"><p class="smalllink">Logout</p></a>
+    <a class="topnav1" href="match">Match!</a>
+    <h2 class="profileheader">Your Profile</h2>
     <a class="topnav2" href="/messages">Messages</a>
     <br>
-
-
     <img class="profilepic" src="img/profile.png" alt="">
-
-
     <p class="mydescription">Hello, <%= currentUser.name %></p>
+    <br>
+    <div class="catdiv">
+        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat1 cat">category1</p>
+        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat2 cat">category2</p>
+        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat3 cat">category3</p>
+        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat4 cat">category4</p>
+        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat5 cat">category5</p>
+    </div>
 
 </div>
