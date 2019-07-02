@@ -1,12 +1,3 @@
-<script>
-    function makeEditable(p) {
-      p.contentEditable = true;
-    }
-
-    function makeReadOnly(p) {
-      p.contentEditable = false;
-    }
-</script>
 
 <div class = "profilegrid">
     <a href="/auth/logout"><p class="smalllink">Logout</p></a>
@@ -14,15 +5,50 @@
     <h2 class="profileheader">Your Profile</h2>
     <a class="topnav2" href="/messages">Messages</a>
     <br>
-    <img class="profilepic" src="img/profile.png" alt="">
-    <p class="mydescription">Hello, <%= currentUser.name %></p>
-    <br>
-    <div class="catdiv">
-        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat1 cat">category1</p>
-        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat2 cat">category2</p>
-        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat3 cat">category3</p>
-        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat4 cat">category4</p>
-        <p onclick="makeEditable(this)" onblur="makeReadOnly(this)" class="cat5 cat">category5</p>
+    <div class="picdiv">
+        <img class="profilepic" src="img/profile.png" alt="">
     </div>
+    <p class="mydescription"> <%= currentUser.name %><%= profile.bio %></p>
+    <br>
 
+    <button id="locationbutton">Update my location</button>
+    <br/>
+    <p id="lat">Latitude:<span></span></p>
+    <p id="long">Longitude:<span></span></p>
 </div>
+
+<script>
+document.getElementById("locationbutton").addEventListener("click", init);
+
+function init() {
+    if(navigator.geolocation){
+        console.log("geolocation available");
+        let giveUp = 1000 * 30; // 30 seconds
+        let tooOld = 1000 * 60 * 60 * 24; // 24 hours
+        options ={
+            enableHighAccuracy: true,
+            timeout: giveUp, 
+            maximumAge: tooOld
+        }
+        navigator.geolocation.getCurrentPosition(gotPos, posFail, options);
+    } else {
+        console.log("geolocation not available");
+    }
+}
+function gotPos(position) {
+    document.getElementById("lat").textContent = position.coords.latitude;
+    document.getElementById("long").textContent = position.coords.longitude;
+    // setTimeout(function () {
+    //     db.profile.update({
+    //     lat: position.coords.latitude,
+    //     long: position.coords.longitude
+    //     })
+    
+    // }, 7000)
+}
+
+function posFail (err) {
+
+    //err is a number
+}
+</script>

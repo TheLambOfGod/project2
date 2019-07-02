@@ -1,18 +1,33 @@
+
 <div class = "profilegrid">
     <a href="/auth/logout"><p class="smalllink">Logout</p></a>
     <a class="topnav1" href="/profile">Profile</a>
     <h2 class="matchheader">Are they worthy?</h2>
     <a class="topnav2" href="/messages">Messages</a>
     <br>
-    <img class="profilepic" src="img/profile.png" alt="">
+    <div class="picdiv">
+        <img class="profilepic" src="img/profile.png" alt="">
+    </div>
     <p class="mydescription">Hello, <%= currentUser.name %></p>
     <br>
-     <div class="catdiv">
-        <p class="cat1 cat">category1</p>
-        <p class="cat2 cat">category2</p>
-        <p class="cat3 cat">category3</p>
-        <p class="cat4 cat">category4</p>
-        <p class="cat5 cat">category5</p>
-    </div>
+  
+        
+    <FORM action="/" method="post" id="form">
 
+        <div class="slidecontainer">
+            <input type="range" min="1" max="30" value="50" class="slider" id="myRange">
+            <h3>Value: <span id="demo"></span></h3>
+            <input type="submit" name="Send">
+        </div>
+    </FORM>
 </div>
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+    output.innerHTML = this.value;
+    console.log(output.innerHTML)
+    }
+</script>

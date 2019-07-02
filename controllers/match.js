@@ -3,7 +3,7 @@ const db = require('../models');
 const passport = require('../config/passportConfig');
 const router = express.Router();
 
- router.put('/:id', function(req, res) {
+ router.put('/', function(req, res) {
     db.profile.update({
         bio: req.body.bio,
         radius: req.body.radius,
@@ -12,7 +12,7 @@ const router = express.Router();
      }, {
          where: {id: parseInt(req.params.id)}
      }).then(function() {
-         res.redirect("/profile/" + req.params.id);
+         res.redirect("/match/");
     })
 
 })

@@ -19,10 +19,14 @@ router.post('/signup', function(req, res) {
   }).spread(function(user, created) {
     if (created) {
       console.log("user was created, not found");
-      passport.authenticate('local',{
-        successRedirect: '/',
-        successFlash: 'Account created and logged in!'
-      })(req, res);
+      user.createProfile({
+        userId: user.id
+      }).then(function(user) {
+        passport.authenticate('local',{
+          successRedirect: '/profile',
+          successFlash: 'Account created and logged in!'
+        })(req, res);
+      })
     } else {
       console.log("email already exists");
       req.flash('error', 'Email already exists!🎱')

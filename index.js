@@ -66,8 +66,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile');
+  db.profile.findOne({
+    where: {
+      userId: req.user.id
+    }
+  }).then(function(profile) {
+    res.render('profile', {profile});
+  })
 });
+
 
 app.get('/match', isLoggedIn, function(req, res) {
   res.render('match');
@@ -80,7 +87,8 @@ app.get('/messages', isLoggedIn, function(req, res) {
 
 //Standard import for routes. When we require it here, we mount it 
 app.use('/auth', require('./controllers/auth'));
-
+app.use('/profile', require('./controllers/profile'));
+app.use('/match', require('./controllers/match'));
 var server = app.listen(process.env.PORT || 3000);
 
 module.exports = server;
